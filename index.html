@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Pollo Loco | Spiel des Jahres</title>
+    <link rel="icon" type="image/png" href="/img/4_enemie_boss_chicken/1_walk/G1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Are+You+Serious&family=Bungee+Spice&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="./models/drawable-object.class.js"> </script>
+    <script src="./models/movable-object.class.js"></script>
+    <script src="./models/character.class.js"> </script>
+    <script src="./models/chicken.class.js"></script>
+    <script src="./models/clouds.class.js"></script>
+    <script src="./models/status-bar.class.js"> </script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/fondo.class.js"></script>
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./models/level.class.js"></script>
+    <script src="./models/throwable-object.class.js"></script>
+    <script src="./models/status-bottle.class.js"></script>
+    <script src="./models/coin-status.class.js"></script>
+    <script src="./models/status-endboss.class.js"></script>
+    <script src="./models/bottle.class.js"></script>
+    <script src="./models/coin.class.js"></script>
+    <script src="./models/endboss.class.js"></script>
+    <script src="./levels/level1.js"></script>
+    <script src="./js/game.js"></script>
+
+</head>
+
+<body>
+    <div id="main-container">
+        <h1>El pollo Loco</h1>
+        <img id="startscreen" src="img/9_intro_outro_screens/start/startscreen_1.png" width="720px" height="480px"
+            alt="">
+        <span style="display:none" id="turn_advise"> Please turn your mobile phone! </span>
+        <div id="mobile_buttons">
+            <div id="left_buttons">
+                <img id="icon_left" src="img/icons-arrow.png" alt="">
+                <img id="icon_right" src="img/icons-arrow.png" alt="">
+            </div>
+            <div id="middle_buttons">
+                <span id="start_game" onclick="startGame()"> Start Game</span>
+                <img onclick="openFullscreen()" id="fullscreen" src="/img/fullscreen.png" alt="fullscreen">
+                <a id="new_game" class="hover_font" href="./index.html">Play Again </a>
+            </div>
+            <div id="right_buttons">
+                <div id="top_right_buttons">
+                    <img onclick="showInfo()" id="mobile_info" src="img/icon-info.png" alt="">
+                    <img onclick="playSound()" src="img/icon-sound-on.png" alt="">
+                </div>
+                <div id="bottom_right_buttons">
+                    <img id="icon_throw" src="img/icon-bottle.png" alt="">
+                    <img id="icon_jump" src="img/icons-arrow.png" alt="">
+                </div>
+            </div>
+        </div>
+        <canvas style="display:none" id="canvas" width="720px" height="480px">
+        </canvas>
+    </div>
+    <img id="losing" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" style="display: none;">
+    <a style="display: none;" id="play_again" class="hover_font" href="./index.html">Play Again </a>
+    <img id="winning" src="img/9_intro_outro_screens/game_over/game over!.png" style="display: none;">
+    <div id="info_bar">
+        <span class="hover_font" onclick="startGame()">Start Game</span>
+        <span onclick="showInfo()" class="hover_font">HOW TO PLAY</span>
+        <span onclick="playSound()" class="hover_font" src="img/play-button.png" alt="play-button">Sound On/OFF</span>
+    </div>
+    <div id="infotext"></div>
+</body>
+
+</html>
