@@ -118,7 +118,15 @@ function mobileButtons() {
     iconThrow.addEventListener('touchend', () => {
         keyboard.D = false;
     });
+
+    document.addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+        keyboard.RIGHT = false;
+        keyboard.SPACE = false;
+        keyboard.D = false;
+    });
 }
+
 
 function showInfo() {
     document.getElementById('infotext').style.display = "";
