@@ -8,7 +8,6 @@ fullBarometer = 100;
 titleMusic = new Audio('audio/music.mp3');
 var musicPlaying = false;
 collectedBottles = [];
-let isFullscreen = false;
 
 
 
@@ -16,7 +15,6 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     mobileButtons();
-    canvas.addEventListener("click", openFullscreen);
 
 }
 
@@ -162,26 +160,3 @@ function closeInfo() {
     document.getElementById('infotext').style = "display:none";
 }
 
-
-function openFullscreen() {
-    if (!isFullscreen) { 
-        var el = document.getElementById('canvas');
-        if (el.requestFullscreen) {
-            el.requestFullscreen();
-        } else if (el.webkitRequestFullScreen) {
-            el.webkitRequestFullScreen();
-        } else if (el.mozRequestFullScreen) {
-            el.mozRequestFullScreen();
-        }
-        isFullscreen = true;
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        }
-        isFullscreen = false;
-    }
-}
