@@ -9,81 +9,55 @@ titleMusic = new Audio('audio/music.mp3');
 var musicPlaying = false;
 collectedBottles = [];
 
-
-
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     mobileButtons();
-
 }
 
-window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-    if (e.keyCode == 38) {
-        keyboard.UP = true;
-    }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-    if (e.keyCode == 68) {
-        keyboard.D = true;
-    }
-});
-
-window.addEventListener("keyup", (e) => {
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
-    if (e.keyCode == 38) {
-        keyboard.UP = false;
-    }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-    if (e.keyCode == 68) {
-        keyboard.D = false;
-    }
-});
-
-function fullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
-    enterFullscreen(fullscreen);
-};
-
-function enterFullscreen(element) {
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.msRequestFUllscreen) {
-        element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
+function handleKeyDown(e) {
+    switch (e.key) {
+        case "ArrowRight":
+            keyboard.RIGHT = true;
+            break;
+        case "ArrowLeft":
+            keyboard.LEFT = true;
+            break;
+        case "ArrowDown":
+            keyboard.DOWN = true;
+            break;
+        case "ArrowUp":
+            keyboard.UP = true;
+            break;
+        case " ":
+            keyboard.SPACE = true;
+            break;
+        case "d":
+            keyboard.D = true;
+            break;
     }
 }
 
-function exitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitRequestFullscreen) {
-        document.webkitRequestFullscreen();
+function handleKeyUp(e) {
+    switch (e.key) {
+        case "ArrowRight":
+            keyboard.RIGHT = false;
+            break;
+        case "ArrowLeft":
+            keyboard.LEFT = false;
+            break;
+        case "ArrowDown":
+            keyboard.DOWN = false;
+            break;
+        case "ArrowUp":
+            keyboard.UP = false;
+            break;
+        case " ":
+            keyboard.SPACE = false;
+            break;
+        case "d":
+            keyboard.D = false;
+            break;
     }
 }
 
@@ -98,11 +72,11 @@ function playSound() {
 }
 
 function startGame() {
-    document.getElementById('winning').style = "display:none";
-    document.getElementById('startscreen').style = "display:none";
-    document.getElementById('canvas').style = "display:";
-    document.getElementById('start_game').style = "display:none";
-    document.getElementById('new_game').style = "display:flex";
+    document.getElementById('winning').style.display = "none";
+    document.getElementById('startscreen').style.display = "none";
+    document.getElementById('canvas').style.display = "";
+    document.getElementById('start_game').style.display = "none";
+    document.getElementById('new_game').style.display = "flex";
     initLevel();
     init();
 }
@@ -113,38 +87,41 @@ function mobileButtons() {
     const iconJump = document.getElementById('icon_jump');
     const iconThrow = document.getElementById('icon_throw');
 
-    iconLeft.addEventListener('touchstart', () => {
+    iconLeft.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.LEFT = true;
     });
     iconLeft.addEventListener('touchend', () => {
         keyboard.LEFT = false;
     });
 
-    iconRight.addEventListener('touchstart', () => {
+    iconRight.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.RIGHT = true;
     });
     iconRight.addEventListener('touchend', () => {
         keyboard.RIGHT = false;
     });
 
-    iconJump.addEventListener('touchstart', () => {
+    iconJump.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.SPACE = true;
     });
     iconJump.addEventListener('touchend', () => {
         keyboard.SPACE = false;
     });
 
-    iconThrow.addEventListener('touchstart', () => {
+    iconThrow.addEventListener('touchstart', (event) => {
+        event.preventDefault();
         keyboard.D = true;
     });
     iconThrow.addEventListener('touchend', () => {
         keyboard.D = false;
     });
-
 }
 
 function showInfo() {
-    document.getElementById('infotext').style = "display:";
+    document.getElementById('infotext').style.display = "";
     let infoText = document.getElementById('infotext');
 
     infoText.innerHTML = `
@@ -157,6 +134,8 @@ function showInfo() {
 }
 
 function closeInfo() {
-    document.getElementById('infotext').style = "display:none";
+    document.getElementById('infotext').style.display = "none";
 }
 
+window.addEventListener("keydown", handleKeyDown);
+window.addEventListener("keyup", handleKeyUp);
